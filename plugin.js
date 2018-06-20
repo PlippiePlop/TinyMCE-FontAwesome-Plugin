@@ -329,11 +329,16 @@ tinymce.PluginManager.add('fontawesome', function(editor, url) {
 
     // Include plugin CSS
     editor.on('init', function() {
-        var csslink = editor.dom.create('link', {
-            rel: 'stylesheet',
-            href: url + '/css/fontawesome.min.css'
-        });
-        document.getElementsByTagName('head')[0].appendChild(csslink);
+       var csslink = editor.dom.create('link', {
+						rel: 'stylesheet',
+						id:'tinymce-fontawesome',
+            href: url + '/css/styles.min.css'
+				});
+                //fix: prevents multiple csslinks in head. when reinitizing editor.
+				var elmFa = document.getElementById('tinymce-fontawesome');				
+				if (!ElFa) {					
+						document.getElementsByTagName('head')[0].appendChild(csslink);
+				}
     });
 
     editor.addButton('fontawesome', {
